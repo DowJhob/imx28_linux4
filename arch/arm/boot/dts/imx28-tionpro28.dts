@@ -47,12 +47,12 @@
 				//wp-gpios = <&gpio0 28 0>;
 			};
 
-			ssp2: ssp@80014000 {
+			/*ssp2: ssp@80014000 {
 				#address-cells = <1>;
 				#size-cells = <0>;
 				compatible = "fsl,imx28-spi";
 				pinctrl-names = "default";
-				pinctrl-0 = <&spi2_pins_a>;
+				//pinctrl-0 = <&spi2_pins_a>;
 				status = "okay";
 
 				flash: m25p80@0 {
@@ -62,7 +62,7 @@
 					spi-max-frequency = <40000000>;
 					reg = <0>;
 				};
-			};
+			};*/
 
 			pinctrl@80018000 {
 				pinctrl-names = "default";
@@ -84,7 +84,17 @@
 					fsl,voltage = <MXS_VOLTAGE_HIGH>;
 					fsl,pull-up = <MXS_PULL_DISABLE>;
 				};
-
+				auart3_pins_tp28: auart3-tp28@0 {
+					reg = <0>;
+					fsl,pinmux-ids = <
+						MX28_PAD_AUART3_RX__AUART3_RX
+						MX28_PAD_SSP2_SS0__AUART3_TX
+					>;
+					fsl,drive-strength = <MXS_DRIVE_4mA>;
+					fsl,voltage = <MXS_VOLTAGE_HIGH>;
+					fsl,pull-up = <MXS_PULL_DISABLE>;
+				};
+				
 				led_pin_gpio3_29: led_gpio3_29@0 {
 					reg = <0>;
 					fsl,pinmux-ids = <
@@ -118,6 +128,18 @@
 					fsl,voltage = <MXS_VOLTAGE_HIGH>;
 					fsl,pull-up = <MXS_PULL_DISABLE>;
 				};
+				
+				/*can0_pins_b: can0@0 {
+					reg = <0>;
+					fsl,pinmux-ids = <
+						MX28_PAD_AUART3_RX__CAN0_TX
+						MX28_PAD_AUART3_TX__CAN0_RX
+					>;
+					fsl,drive-strength = <MXS_DRIVE_4mA>;
+					fsl,voltage = <MXS_VOLTAGE_HIGH>;
+					fsl,pull-up = <MXS_PULL_DISABLE>;
+				};*/
+				
 			};
 
 			lcdif@80030000 {
@@ -171,12 +193,12 @@
 				};
 			};
 
-			can0: can@80032000 {
+			/*can0: can@80032000 {
 				pinctrl-names = "default";
-				pinctrl-0 = <&can0_pins_a>;
+				pinctrl-0 = <&can0_pins_b>;
 				xceiver-supply = <&reg_can_3v3>;
 				status = "okay";
-			};
+			};*/
 
 			/*can1: can@80034000 {
 				pinctrl-names = "default";
@@ -249,13 +271,27 @@
 			auart0: serial@8006a000 {
 				pinctrl-names = "default";
 				pinctrl-0 = <&auart0_pins_a>;
-				uart-has-rtscts;
+				//uart-has-rtscts;
+				status = "okay";
+			};
+			auart1: serial@8006c000 {
+				pinctrl-names = "default";
+				pinctrl-0 = <&auart1_pins_a>;
+				//uart-has-rtscts;
+				rts-gpios = <&gpio2 13 GPIO_ACTIVE_LOW>;
+				status = "okay";
+			};
+			auart2: serial@8006e000 {
+				pinctrl-names = "default";
+				pinctrl-0 = <&auart2_pins_a>;
+				//uart-has-rtscts;
+				rts-gpios = <&gpio2 5 GPIO_ACTIVE_LOW>;
 				status = "okay";
 			};
 
 			auart3: serial@80070000 {
 				pinctrl-names = "default";
-				pinctrl-0 = <&auart3_2pins_a>;
+				pinctrl-0 = <&auart3_pins_tp28>;
 				status = "okay";
 			};
 
