@@ -84,7 +84,27 @@
 					fsl,voltage = <MXS_VOLTAGE_HIGH>;
 					fsl,pull-up = <MXS_PULL_DISABLE>;
 				};
-				auart3_pins_tp28: auart3-tp28@0 {
+				auart0_pins_tp28: auart0-tp28@0 {
+					reg = <0>; 
+					fsl,pinmux-ids = <
+						MX28_PAD_AUART0_RX__AUART0_RX
+						MX28_PAD_AUART0_TX__AUART0_TX
+					>;
+					fsl,drive-strength = <MXS_DRIVE_4mA>;
+					fsl,voltage = <MXS_VOLTAGE_HIGH>;
+					fsl,pull-up = <MXS_PULL_DISABLE>;
+				};
+				auart1_pins_tp28: auart1-tp28@0 {
+					reg = <0>;
+					fsl,pinmux-ids = <
+						MX28_PAD_AUART1_RX__AUART1_RX
+						MX28_PAD_AUART1_TX__AUART1_TX
+					>;
+					fsl,drive-strength = <MXS_DRIVE_4mA>;
+					fsl,voltage = <MXS_VOLTAGE_HIGH>;
+					fsl,pull-up = <MXS_PULL_DISABLE>;
+				};
+                                auart3_pins_tp28: auart3-tp28@0 {
 					reg = <0>;
 					fsl,pinmux-ids = <
 						MX28_PAD_AUART3_RX__AUART3_RX
@@ -94,7 +114,6 @@
 					fsl,voltage = <MXS_VOLTAGE_HIGH>;
 					fsl,pull-up = <MXS_PULL_DISABLE>;
 				};
-				
 				led_pin_gpio3_29: led_gpio3_29@0 {
 					reg = <0>;
 					fsl,pinmux-ids = <
@@ -270,31 +289,29 @@
 
 			auart0: serial@8006a000 {
 				pinctrl-names = "default";
-				pinctrl-0 = <&auart0_pins_a>;
+				pinctrl-0 = <&auart0_pins_tp28>;
 				//uart-has-rtscts;
 				status = "okay";
 			};
 			auart1: serial@8006c000 {
 				pinctrl-names = "default";
-				pinctrl-0 = <&auart1_pins_a>;
+				pinctrl-0 = <&auart1_pins_tp28>;
 				//uart-has-rtscts;
-				rts-gpios = <&gpio2 13 GPIO_ACTIVE_LOW>;
+				//rts-gpios = <&gpio2 13 GPIO_ACTIVE_LOW>;
 				status = "okay";
 			};
 			auart2: serial@8006e000 {
 				pinctrl-names = "default";
 				pinctrl-0 = <&auart2_pins_a>;
 				//uart-has-rtscts;
-				rts-gpios = <&gpio2 5 GPIO_ACTIVE_LOW>;
+				//rts-gpios = <&gpio2 5 GPIO_ACTIVE_LOW>;
 				status = "okay";
 			};
-
 			auart3: serial@80070000 {
 				pinctrl-names = "default";
 				pinctrl-0 = <&auart3_pins_tp28>;
 				status = "okay";
 			};
-
 			usbphy0: usbphy@8007c000 {				
 				status = "okay";
 			};
